@@ -49,7 +49,9 @@ public abstract class Droid {
     public void attack(Droid enemy) {
         int damageDealt = getDamage();
         enemy.takeDamage(damageDealt);
-        System.out.println(getName() + " deals " + enemy.getName() + " " + damageDealt + " damage. Now " + enemy.getName() + " has " + enemy.getHealth() + " HP.");
+        String message = (getName() + " deals " + enemy.getName() + " " + damageDealt + " damage. Now " + enemy.getName() + " has " + enemy.getHealth() + " HP.");
+        writeToBattleFile(message);
+        System.out.println(message);
     }
 
     public void writeToBattleFile(String message) {
