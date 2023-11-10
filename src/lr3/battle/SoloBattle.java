@@ -27,15 +27,7 @@ public class SoloBattle implements Serializable {
     }
 
     private static void performRound(Droid attacker, Droid victim) {
-        if (attacker instanceof Assassin assassin) {
-            assassin.attack(victim);
-        } else if (attacker instanceof Paladin paladin) {
-            paladin.attack(victim);
-        } else if (attacker instanceof Wizard wizard) {
-            wizard.attack(victim);
-        } else if (attacker instanceof Healer healer) {
-            healer.attack(victim);
-        }
+        attacker.attack(victim);
     }
 
     private static void determineWinner(Droid droid1, Droid droid2) {
