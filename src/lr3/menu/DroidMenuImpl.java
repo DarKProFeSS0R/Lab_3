@@ -138,7 +138,7 @@ public class DroidMenuImpl implements DroidMenu {
             System.out.println("4. Start Team vs Team battle");
             System.out.println("5. Wrote battle into file");
             System.out.println("6. Replay battle from file");
-            System.out.println("7. Close game");
+            System.out.println("0. Close game");
             System.out.println("Enter your option:");
 
             int choice = getUserInput();
@@ -162,7 +162,7 @@ public class DroidMenuImpl implements DroidMenu {
                 case 6:
                     loadBattleFromFile();
                     break;
-                case 7:
+                case 0:
                     exitProgram();
                     break;
                 default:
