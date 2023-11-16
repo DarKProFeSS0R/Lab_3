@@ -5,15 +5,9 @@ public class Healer extends Droid {
 
     public Healer(String name) {
         super(name);
-        int minDamage = 10;
-        int maxDamage = 20;
-        setDamage(generateRandomValue(minDamage, maxDamage));
-        int minHealth = 75;
-        int maxHealth = 125;
-        setHealth(generateRandomValue(minHealth, maxHealth));
-        int minMana = 80;
-        int maxMana = 120;
-        setMana(generateRandomValue(minMana, maxMana));
+        setDamage(generateRandomValue(10, 20));
+        setHealth(generateRandomValue(75, 125));
+        setMana(generateRandomValue(80, 120));
     }
 
     public int getMana() {

@@ -13,15 +13,9 @@ public class Wizard extends Droid {
 
     public Wizard(String name) {
         super(name);
-        int minDamage = 10;
-        int maxDamage = 20;
-        setDamage(generateRandomValue(minDamage, maxDamage));
-        int minHealth = 150;
-        int maxHealth = 200;
-        setHealth(generateRandomValue(minHealth, maxHealth));
-        int minMana = 80;
-        int maxMana = 120;
-        setMana(generateRandomValue(minMana, maxMana));
+        setDamage(generateRandomValue(10, 20));
+        setHealth(generateRandomValue(150, 200));
+        setMana(generateRandomValue(80, 120));
     }
 
     public void attack(Droid enemy) {

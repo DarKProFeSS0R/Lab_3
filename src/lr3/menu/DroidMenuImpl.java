@@ -48,19 +48,17 @@ public class DroidMenuImpl implements DroidMenu {
         }
 
         System.out.println("Choose first droid:");
-        showDroidList();
-        int firstDroidIndex = scanner.nextInt()-1;
+        int firstDroidIndex = chooseDroid();
 
-        if (firstDroidIndex < 0 || firstDroidIndex >= droidList.size()) {
+        if (firstDroidIndex == -1) {
             System.out.println("Wrong option.");
             return;
         }
 
         System.out.println("Choose second droid:");
-        showDroidList();
-        int secondDroidIndex = scanner.nextInt()-1;
+        int secondDroidIndex = chooseDroid();
 
-        if (secondDroidIndex < 0 || secondDroidIndex >= droidList.size()) {
+        if (secondDroidIndex == -1) {
             System.out.println("Wrong option.");
             return;
         }
@@ -229,6 +227,18 @@ public class DroidMenuImpl implements DroidMenu {
         }
 
         return team;
+    }
+
+    private int chooseDroid() {
+        showDroidList();
+        int droidIndex = scanner.nextInt() - 1;
+
+        if (droidIndex < 0 || droidIndex >= droidList.size()) {
+            System.out.println("Wrong option.");
+            return -1;
+        }
+
+        return droidIndex;
     }
 
 }

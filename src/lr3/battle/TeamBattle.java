@@ -22,47 +22,8 @@ public class TeamBattle implements Serializable {
             writeToConsoleAndFile(roundMessage);
             System.out.println(roundMessage);
 
-            for (Droid droid1 : team1) {
-                Droid target = getRandomDroid(team2);
-                if (target != null) {
-                    if (droid1 instanceof Healer healer) {
-                        if (healer.getMana() >= 10) {
-                            Droid teammateToHeal = findWeakestTeammate(team1);
-                            if (teammateToHeal != null) {
-                                healer.heal(teammateToHeal);
-                            }
-                        } else {
-                            droid1.attack(target);
-                        }
-                    } else {
-                        droid1.attack(target);
-                    }
-                    if (target.getHealth() == 0) {
-                        team1.remove(target);
-                    }
-                }
-            }
-
-            for (Droid droid2 : team2) {
-                Droid target = getRandomDroid(team1);
-                if (target != null) {
-                    if (droid2 instanceof Healer healer) {
-                        if (healer.getMana() >= 10) {
-                            Droid teammateToHeal = findWeakestTeammate(team2);
-                            if (teammateToHeal != null) {
-                                healer.heal(teammateToHeal);
-                            }
-                        } else {
-                            droid2.attack(target);
-                        }
-                    } else {
-                        droid2.attack(target);
-                    }
-                    if (target.getHealth() == 0) {
-                        team1.remove(target);
-                    }
-                }
-            }
+            performTeamAttack(team1, team2);
+            performTeamAttack(team2, team1);
 
             round++;
         }
@@ -99,7 +60,7 @@ public class TeamBattle implements Serializable {
         return team.get(randomIndex);
     }
 
-    private static Droid findWeakestTeammate(List<Droid> team) {
+    public static Droid findWeakestTeammate(List<Droid> team) {
         Droid weakestTeammate = null;
         int minHealth = Integer.MAX_VALUE;
 
@@ -118,6 +79,29 @@ public class TeamBattle implements Serializable {
             Files.write(Paths.get("battle_log.txt"), "".getBytes(), StandardOpenOption.TRUNCATE_EXISTING);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private static void performTeamAttack (List<Droid> attackingTeam, List<Droid> targetTeam){
+        for (Droid attacker : attackingTeam) {
+            Droid target = getRandomDroid(targetTeam);
+            if (target != null) {
+                if (attacker instanceof Healer healer) {
+                    if (healer.getMana() >= 10) {
+                        Droid teammateToHeal = findWeakestTeammate(attackingTeam);
+                        if (teammateToHeal != null) {
+                            healer.heal(teammateToHeal);
+                        }
+                    } else {
+                        attacker.attack(target);
+                    }
+                } else {
+                    attacker.attack(target);
+                }
+                if (target.getHealth() == 0) {
+                    targetTeam.remove(target);
+                }
+            }
         }
     }
 

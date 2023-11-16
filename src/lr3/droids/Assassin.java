@@ -4,12 +4,8 @@ public class Assassin extends Droid {
 
     public Assassin(String name) {
         super(name);
-        int minHealth = 100;
-        int maxHealth = 150;
-        setHealth(generateRandomValue(minHealth, maxHealth));
-        int minDamage = 30;
-        int maxDamage = 50;
-        setDamage(generateRandomValue(minDamage, maxDamage));
+        setHealth(generateRandomValue(100, 150));
+        setDamage(generateRandomValue(30, 50));
     }
 
     public void attack(Droid enemy) {
